@@ -54,17 +54,36 @@ ggplot(data = GSS, aes(x =  DEGREE, y = WORDSUM)) +
 
 ```
 
-With the plot we can see that the average score varies, but will go up with a degree.
+With the plot we can see that the average score varies, but will go up with a degree. Those with a higher degree, on average, have a higher WORDSUM score.
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+favstats(WORDSUM~DEGREE,data = GSS)
+```
+
+The closest in mean and median would be BACHALOR and JUNIOR COLLEGE, but even then there is a difference of .4 between them. This would indicate that even though there is difference seeing as the entirety of the means and medians all vary, showing a correlation between WORDSUM score and DEGREE.
+
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+model1 <- aov(WORDSUM~DEGREE,data = GSS)
+summary.aov(model1)
+```
+```{r}
+plot(TukeyHSD(model1))
+print(TukeyHSD(model1))
+```
+
+The graph will have our given p-value of 0.000236, which is lower than 0.05, which means we reject the null hypothesis. There is a difference in WORDSUM score and DEGREE. The differences would be Jr college to Bachelors, Jr College to High School, High School to Graduate, and LIHS to Graduate.
 
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+During our research and information gathered. The question we had was, is there a difference between the average score on the WORDSUM test and level of schooling DEGREE? With our findings we can say there is a difference. During our TuckyHSD test, he receive a p-value of 0.000236, which is less than 0.05. IN turn we reject the null hypothesis of no difference and conclude there is a difference. Further in we find that the differences most noticable would be Jr College to Bachelors, Jr College to High School, High School to Graduate, and LIHS to Graduate. 
