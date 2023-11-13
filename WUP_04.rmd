@@ -1,6 +1,6 @@
 ---
 title: "WUP_04"
-author: "Put your name here!"
+author: "Daniel"
 date: "fall 2023"
 output:
   html_document:
@@ -11,7 +11,7 @@ output:
 require(knitr)
 require(tidyverse)
 require(tigerstats)
-
+GSS = read.csv("GSScsv.csv")
 ```
 
 # Introduction
@@ -20,11 +20,13 @@ require(tigerstats)
 
 The data is in the file GSScsv.csv and came from the 2018 General Social Survey.  The question to answer is to resolve this hypothesis.  
 $H_0$ There is no difference between the average score on the WORDSUM test and level of schooling DEGREE  
-$H_a$ There is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE  
+$H_A$ There is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE  
 
 # Methods
 
 <!--Mention that you intend to use chatGPT to the greatest extent possible. Give credit to chatGPT when you use it to create code in your report. Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+
+
 
 # Results
 
@@ -34,7 +36,25 @@ $H_a$ There is a significant difference in average score on the WORDSUM test bet
 
 ### Graphical Descriptive Results
 
+I used chatgpt to get R code for plotting
+
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+#Load necessary libraries (if not already loaded)
+#install.packages('ggplot2') # Install ggplot2 if needed
+library(ggplot2)
+
+#create a box plot
+ggplot(data = GSS, aes(x =  DEGREE, y = WORDSUM)) +
+  geom_boxplot() +
+  xlab("DEGREE") +
+  ylab("WORDSUM") +
+  ggtitle("Boxplot of Response Varible by Category")
+
+```
+
+With the plot we can see that the average score varies, but will go up with a degree.
 
 ### Numerical Descriptive Results
 
